@@ -5,9 +5,9 @@ open System
 type Memory = int[]
 
 type CPU = {
-    IP: int
-    A: int
-    B: int
+    IP: int  // instruction pointer
+    A: int   // general purpose register
+    B: int   // general purpose register
 }
 
 [<EntryPoint>]
