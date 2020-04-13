@@ -8,6 +8,7 @@ type CPU = {
     IP: int  // instruction pointer
     A: int   // general purpose register
     B: int   // general purpose register
+    CJR: int // conditional jump pointer
 }
 
 [<EntryPoint>]
