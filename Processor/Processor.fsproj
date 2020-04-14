@@ -4,6 +4,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="cpu.fs" />
-    <None Include="scratches.fsx" />
   </ItemGroup>
 </Project>
