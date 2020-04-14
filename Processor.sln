@@ -1,6 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# 
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Processor", "Processor\Processor.fsproj", "{5E04631A-DB07-4489-AB2F-8EBEDBC6B3F3}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Examples.Fibonacci", "Examples.Fibonacci\Examples.Fibonacci.fsproj", "{EE4B9E94-50A5-4D61-BE55-76D97982ACD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +15,9 @@ Global
 		{5E04631A-DB07-4489-AB2F-8EBEDBC6B3F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E04631A-DB07-4489-AB2F-8EBEDBC6B3F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E04631A-DB07-4489-AB2F-8EBEDBC6B3F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE4B9E94-50A5-4D61-BE55-76D97982ACD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE4B9E94-50A5-4D61-BE55-76D97982ACD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE4B9E94-50A5-4D61-BE55-76D97982ACD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE4B9E94-50A5-4D61-BE55-76D97982ACD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
