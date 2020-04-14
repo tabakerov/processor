@@ -11,6 +11,7 @@ module CPU
         IP : int    // instruction pointer
         A  : int    // general purpose register
         B  : int    // general purpose register
+        JP : int    // unconditional jump pointer
         CJR: int    // conditional jump pointer
     }
 
@@ -31,6 +32,9 @@ module CPU
         | AGreaterB = 6
         | ABEquals = 7
         | SetCJR = 8
+        
+        | SetJP = 9
+        | Jump = 10
 
     type Ops =
         | Halt
@@ -49,6 +53,8 @@ module CPU
         | AGreaterB
         | ABEquals
         | SetCJR
+        | SetJP
+        | Jump
 
     let decodeInstruction (i : int) : Ops =
         match enum<OpsEnum>(i) with
@@ -68,6 +74,8 @@ module CPU
         | OpsEnum.AGreaterB -> AGreaterB
         | OpsEnum.ABEquals -> ABEquals
         | OpsEnum.SetCJR -> SetCJR
+        | OpsEnum.SetJP -> SetJP
+        | OpsEnum.Jump -> Jump
         | _ -> Noop
 
     let encodeInstruction (i : Ops) : int =
@@ -82,6 +90,8 @@ module CPU
         | AGreaterB -> int OpsEnum.AGreaterB
         | ABEquals -> int OpsEnum.ABEquals
         | SetCJR -> int OpsEnum.SetCJR
+        | SetJP -> int OpsEnum.SetJP
+        | Jump -> int OpsEnum.Jump
     
     let rec ``process`` cpu (ram : int[])  =
         match cpu.IP >= ram.Length with
@@ -116,4 +126,9 @@ module CPU
                     | true -> ``process`` { cpu with IP = cpu.CJR } ram
                     | false -> ``process`` { cpu with IP = cpu.IP + 1 } ram
                 | SetCJR -> // set CJR = next memory item, IP jumps over
-                    ``process`` { cpu with IP = cpu.IP + 2; CJR = ram.[cpu.IP+1]} ram
+                    ``process`` { cpu with IP = cpu.IP + 2; CJR = ram.[cpu.IP+1] } ram
+                | SetJP -> // set JP = next memory item, IP jumps over
+                    ``process`` { cpu with IP = cpu.IP + 2; JP = ram.[cpu.IP+1] } ram
+                | Jump -> // set IP = JP
+                    ``process`` { cpu with IP = cpu.JP } ram
+
