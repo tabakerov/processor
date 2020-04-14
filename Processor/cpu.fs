@@ -110,8 +110,8 @@ module CPU
             | CpuMode.Halt -> (cpu, ram)
             | CpuMode.Run ->
                 let instruction = ram.[cpu.IP] |> decodeInstruction
-                printfn "Instruction: %A, CPU: %A" instruction cpu
-                Console.ReadKey() |> ignore
+                // printfn "Instruction: %A, CPU: %A" instruction cpu
+                // Console.ReadKey() |> ignore
                 match instruction with
                 | Halt -> // this is the end
                     ``process`` { cpu with Mode = CpuMode.Halt} ram
@@ -124,7 +124,7 @@ module CPU
                 | SetRWA -> // load next memory item to RWA, IP jumps over
                     ``process`` { cpu with IP = cpu.IP + 2; RWA = ram.[cpu.IP+1] } ram
                 | Read -> // load from RWA memory address to A, IP + 1
-                    ``process`` { cpu with IP = cpu.IP + 1; A = ram.[cpu.RWA]}
+                    ``process`` { cpu with IP = cpu.IP + 1; A = ram.[cpu.RWA]} ram
                 | Write -> // write A to memory with address RWA, IP + 1
                     ram.[cpu.RWA] <- cpu.A
                     ``process`` {cpu with IP = cpu.IP + 1} ram
