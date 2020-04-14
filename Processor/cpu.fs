@@ -116,7 +116,7 @@ module CPU
                 | SwapAB -> // A <-> B, IP + 1
                     ``process`` { cpu with IP = cpu.IP + 1; A = cpu.B; B = cpu.A } ram
                 | AddAB -> // A + B, put result to  A, IP + 1
-                    ``process`` { cpu with IP = cpu.IP + 2; A = cpu.A + ram.[cpu.IP+1] } ram
+                    ``process`` { cpu with IP = cpu.IP + 1; A = cpu.A + cpu.B } ram
                 | AGreaterB -> // check if A > B and write CJR to IP if true
                     match cpu.A > cpu.B with
                     | true -> ``process`` { cpu with IP = cpu.CJR } ram
